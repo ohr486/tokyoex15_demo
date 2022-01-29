@@ -13,7 +13,7 @@ jobs:
           POSTGRES_DB: demo_test
           POSTGRES_PASSWORD: postgres
 
-    working_directory: ~/app
+    working_directory: /app
 
     steps:
       - checkout
