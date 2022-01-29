@@ -1,15 +1,8 @@
-# Elixir CircleCI 2.0 configuration file
-# See: https://circleci.com/docs/2.0/language-elixir/
 version: 2
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      # specify the version here
       - image: circleci/elixir:1.13
         environment:
           MIX_ENV: test
@@ -27,6 +20,7 @@ jobs:
 
       - run: mix local.hex --force
       - run: mix local.rebar --force
+      - run: mix archive.install --force hex phx_new
 
       - run: mix deps.get, compile
       - run: mix test
