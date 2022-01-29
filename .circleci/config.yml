@@ -10,20 +10,24 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       # specify the version here
-      - image: circleci/elixir:1.13-node-browsers-legacy
+      - image: circleci/elixir:1.13
+        environment:
+          MIX_ENV: test
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/postgres:9.4
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: demo_test
+          POSTGRES_PASSWORD: postgres
 
-    working_directory: ~/repo
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    working_directory: ~/app
+
     steps:
       - checkout
 
-      # specify any bash command here prefixed with `run: `
-      - run: mix deps.get
-      - run: mix ecto.create
+      - run: mix local.hex --force
+      - run: mix local.rebar --force
+
+      - run: mix deps.get, compile
       - run: mix test
+
