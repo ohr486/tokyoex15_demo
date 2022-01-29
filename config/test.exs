@@ -8,7 +8,7 @@ import Config
 config :demo, Demo.Repo,
   username: "postgres",
   password: "postgres",
-  hostname: "demo_db",
+  hostname: "demo_test",
   database: "demo_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
