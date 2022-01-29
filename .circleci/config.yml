@@ -22,32 +22,32 @@ jobs:
       - run: mix local.rebar --force
       - run: mix archive.install --force hex phx_new
 
-      - restore_cache:
-          keys:
-            - v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
-            - v1-mix-cache-{{ .Branch }}
-            - v1-mix-cache
-      - restore_cache:
-          keys:
-            - v1-build-cache-{{ .Branch }}
-            - v1-build-cache
+#      - restore_cache:
+#          keys:
+#            - v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
+#            - v1-mix-cache-{{ .Branch }}
+#            - v1-mix-cache
+#      - restore_cache:
+#          keys:
+#            - v1-build-cache-{{ .Branch }}
+#            - v1-build-cache
 
       - run: mix do deps.get, compile
-      - save_cache:
-          key: v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
-          paths: "deps"
-      - save_cache:
-          key: v1-mix-cache-{{ .Branch }}
-          paths: "deps"
-      - save_cache:
-          key: v1-mix-cache
-          paths: "deps"
-      - save_cache:
-          key: v1-build-cache-{{ .Branch }}
-          paths: "_build"
-      - save_cache:
-          key: v1-build-cache
-          paths: "_build"
+#      - save_cache:
+#          key: v1-mix-cache-{{ .Branch }}-{{ checksum "mix.lock" }}
+#          paths: "deps"
+#      - save_cache:
+#          key: v1-mix-cache-{{ .Branch }}
+#          paths: "deps"
+#      - save_cache:
+#          key: v1-mix-cache
+#          paths: "deps"
+#      - save_cache:
+#          key: v1-build-cache-{{ .Branch }}
+#          paths: "_build"
+#      - save_cache:
+#          key: v1-build-cache
+#          paths: "_build"
 
       - run: mix test
 
