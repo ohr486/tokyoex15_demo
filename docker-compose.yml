@@ -8,10 +8,10 @@ services:
     environment:
       DB_HOST: demo_db
       MIX_TEST_DB_HOST: demo_db
-    links:
-      - demo_db
     ports:
       - 4000:4000
+    depends_on:
+      - demo_db
     volumes:
       - .:/app
       - demo_app_node_modules:/app/assets/node_modules
