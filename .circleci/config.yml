@@ -8,7 +8,7 @@ jobs:
           MIX_ENV: test
           MIX_TEST_DB_HOST: localhost
 
-      - image: circleci/postgres:9.4
+      - image: circleci/postgres:9.6
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: demo_test
